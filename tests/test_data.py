@@ -2,7 +2,7 @@ import os
 
 import pytest
 import pandas as pd
-from src.data import sample_data
+from src.sample_data import sample_data
 from omegaconf import OmegaConf
 
 

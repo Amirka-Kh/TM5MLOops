@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 
 # Take a data sample
 Write-Output "Sampling data..."
-python ..\src\data.py
+python ..\src\sample_data.py
 if ($LASTEXITCODE -ne 0) {
     Write-Output "Failed to sample data."
     exit 1
@@ -14,7 +14,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # Validate the data sample
 Write-Output "Validating data..."
-python ..\src\validate.py
+python ..\src\validate_data.py
 if ($LASTEXITCODE -ne 0) {
     Write-Output "Data validation failed. Data will not be versioned."
     exit 1
