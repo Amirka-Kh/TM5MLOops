@@ -1,5 +1,6 @@
 outs:
-- md5: de1f5854eed76735c35f859a1acbaee3
-  size: 20262825
+- md5: 1095b33827c28ec6e182949f13100f8a
+  size: 20306680
   hash: md5
   path: sample.csv
+  isexec: true

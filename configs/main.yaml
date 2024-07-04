@@ -1,9 +1,14 @@
 data:
   url: https://storage.yandexcloud.net/sledobot.ru/Airbnb_Data.csv
-  version: "1.2"
-  message: "Add data version  1.2"
-
+  version: "1.5"
+  message: "Add data version 1.5"
+  sample_size: 0.2
+  dataset_name: "sample.csv"
 
 defaults:
   - data: airbnb
   - _self_
+
+hydra:
+  run:
+    dir: ../outputs
