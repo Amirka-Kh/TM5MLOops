@@ -17,8 +17,8 @@ def version_data(cfg: DictConfig):
     subprocess.run(["git", "tag", "-a", version, "-m", message])
 
     # Push the commit and the tag to the remote repository
-    subprocess.run(["git", "push"])
-    subprocess.run(["git", "push", "--tags"])
+    # subprocess.run(["git", "push"])
+    # subprocess.run(["git", "push", "--tags"])
 
     # Push the data using DVC
     subprocess.run(["dvc", "push"])

@@ -8,6 +8,7 @@ import datetime
 @hydra.main(version_base="1.2", config_path="../configs", config_name="main")
 def sample_data(cfg: DictConfig) -> None:
     start = datetime.datetime.now()
+    print(OmegaConf.to_yaml(cfg))
 
     # Read data from URL
     data = pd.read_csv(cfg.data.url)
