@@ -1,0 +1,10 @@
+data:
+  sample_size: 0.2
+  dataset_name: sample.csv
+  url: https://storage.yandexcloud.net/sledobot.ru/Airbnb_Data.csv
+  version: '1.1'
+  message: Add data version  1.1
+local_data:
+  path: data.csv
+  repo: .
+  remote: localstore

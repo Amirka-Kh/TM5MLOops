@@ -1,0 +1,5 @@
+[2024-06-30 16:28:10 +0300] [45780] [INFO] Starting gunicorn 22.0.0
+[2024-06-30 16:28:10 +0300] [45780] [INFO] Listening at: http://[::]:8794 (45780)
+[2024-06-30 16:28:10 +0300] [45780] [INFO] Using worker: sync
+[2024-06-30 16:28:10 +0300] [45782] [INFO] Booting worker with pid: 45782
+[2024-06-30 16:28:10 +0300] [45783] [INFO] Booting worker with pid: 45783

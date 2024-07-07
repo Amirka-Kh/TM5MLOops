@@ -1,0 +1,2 @@
+[[34m2024-06-30T16:28:10.382+0300[0m] {[34mtriggerer_job_runner.py:[0m174} INFO[0m - Setting up TriggererHandlerWrapper with handler <FileTaskHandler (NOTSET)>[0m
+[[34m2024-06-30T16:28:10.387+0300[0m] {[34mtriggerer_job_runner.py:[0m230} INFO[0m - Setting up logging queue listener with handlers [<RedirectStdHandler <stdout> (NOTSET)>, <NonCachingFileHandler /mnt/c/Users/amira/PycharmProjects/MLOps/services/airflow/logs/triggerer.log (NOTSET)>, <TriggererHandlerWrapper (NOTSET)>][0m
