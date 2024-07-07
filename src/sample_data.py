@@ -151,7 +151,7 @@ def read_datastore():
     return df, str(cfg.data.version)
 
 
-def preprocess_data(data: pd.DataFrame, version: str) -> tuple[DataFrame, Any]:
+def preprocess_data(data: pd.DataFrame) -> DataFrame:
     # Transform data
     # Handling missing values
     data['bathrooms'].fillna(data['bathrooms'].median(), inplace=True)
@@ -238,8 +238,11 @@ def preprocess_data(data: pd.DataFrame, version: str) -> tuple[DataFrame, Any]:
     # Concatenate the encoded categorical features back to the DataFrame
     data_cleaned = pd.concat([data.reset_index(drop=True), onehot_encoded_df.reset_index(drop=True)], axis=1)
 
-    # Return processed dataframe
-    return data_cleaned, version
+    # X = data_cleaned.drop(columns=['log_price', 'id'])
+    # y = data_cleaned['log_price']
+
+    # Return processed features
+    return data_cleaned
 
 
 def validate_features(data: pd.DataFrame, version):
@@ -338,10 +341,10 @@ def validate_features(data: pd.DataFrame, version):
 
     # Run the checkpoint
     results = context.run_checkpoint(checkpoint_name='features_validation_checkpoint')
-    return results['success']
+    if results:
+        return data
+    return None
 
 
 if __name__ == "__main__":
-    data, version = read_datastore()
-    data, version = preprocess_data(data, version)
-    print(validate_features(data, version))
+    sample_data()
