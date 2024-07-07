@@ -103,6 +103,12 @@ fluent_datasources:
       airbnb:
         type: csv
         filepath_or_buffer: ..\data\samples\sample.csv
+  features_datasource:
+    type: pandas
+    assets:
+      airbnb_features:
+        type: dataframe
+        batch_metadata: {}
 notebooks:
 include_rendered_content:
   globally: false
