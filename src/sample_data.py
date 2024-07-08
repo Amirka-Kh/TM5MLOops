@@ -132,9 +132,9 @@ Phase 2: Data preparation/engineering
 """
 
 
-def read_datastore():
+def read_datastore() -> Tuple[pd.DataFrame, str]:
     # Load configuration
-    cfg = OmegaConf.load('../configs/main.yaml')
+    cfg = OmegaConf.load('./configs/main.yaml')
 
     # Define location in datastore
     url = dvc.api.get_url(
@@ -148,10 +148,11 @@ def read_datastore():
     df = pd.read_csv(url)
 
     # Send dataframe and version
-    return df, str(cfg.data.version)
+    version = str(cfg.data.version)
+    return df, version
 
 
-def preprocess_data(data: pd.DataFrame) -> DataFrame:
+def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
     # Transform data
     # Handling missing values
     data['bathrooms'].fillna(data['bathrooms'].median(), inplace=True)
@@ -238,14 +239,14 @@ def preprocess_data(data: pd.DataFrame) -> DataFrame:
     # Concatenate the encoded categorical features back to the DataFrame
     data_cleaned = pd.concat([data.reset_index(drop=True), onehot_encoded_df.reset_index(drop=True)], axis=1)
 
-    # X = data_cleaned.drop(columns=['log_price', 'id'])
+    data_cleaned = data_cleaned.drop(columns=['kitchen'])
     # y = data_cleaned['log_price']
 
     # Return processed features
     return data_cleaned
 
 
-def validate_features(data: pd.DataFrame, version):
+def validate_features(data: pd.DataFrame, version) -> pd.DataFrame:
     # Create a FileDataContext
     context = FileDataContext(project_root_dir="../services")
 

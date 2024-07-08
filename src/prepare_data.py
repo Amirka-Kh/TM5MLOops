@@ -10,52 +10,40 @@ from src.sample_data import read_datastore, preprocess_data, validate_features
 
 
 @step(enable_cache=False)
-def extract_data_step() -> Tuple[
-    Annotated[pd.DataFrame,
-    ArtifactConfig(name="extracted_data",
-                   tags=["data_preparation"]
-                   )
-    ],
-    Annotated[str,
-    ArtifactConfig(name="data_version",
-                   tags=["data_preparation"])]
+def extract_data() -> Tuple[
+    Annotated[pd.DataFrame, ArtifactConfig(name="extracted_data", tags=["data_preparation"])],
+    Annotated[str, ArtifactConfig(name="data_version", tags=["data_preparation"])]
 ]:
     data, version = read_datastore()
     return data, version
 
 
 @step(enable_cache=False)
-def transform_data_step(data: pd.DataFrame) -> Annotated[pd.DataFrame, ArtifactConfig(
-    name="input_features",
-    tags=["data_preparation"]
-)]:
+def transform_data(data: pd.DataFrame) -> Annotated[pd.DataFrame, ArtifactConfig(name="input_features", tags=["data_preparation"])]:
     processed_data = preprocess_data(data)
     return processed_data
 
 
 @step(enable_cache=False)
-def validate_data_step(data: pd.DataFrame, version: str) -> Annotated[Any, ArtifactConfig(
-    name="valid_input_features",
-    tags=["data_preparation"]
-)]:
+def validate_data(data: pd.DataFrame, version: str) -> Annotated[pd.DataFrame, ArtifactConfig(name="valid_input_features", tags=["data_preparation"])]:
     result = validate_features(data, version)
     return result
 
 
 @step(enable_cache=False)
-def load(data: pd.DataFrame, version: str):
+def load(data: pd.DataFrame, version: str) -> None:
     load_features(data, version)
 
 
-@pipeline
-def data_prepare_pipeline(extract_data, transform_data, validate_data):
+@pipeline()
+def data_prepare_pipeline():
     data, version = extract_data()
     data = transform_data(data)
     data = validate_data(data, version)
     load(data, version)
 
 
-def load_features(df: pd.DataFrame, version):
+def load_features(df: pd.DataFrame, version) -> None:
     # version is your custom version (set it to tags)
     zenml.save_artifact(data=df, name="features_target", tags=[version])
 
