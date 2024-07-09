@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+
+  airflow:
+    container_name: "airflow_service"
+    user: "${DOCKER_UID}:0"  # UID is set to the value of DOCKER_UID and GID to 0
+    build:
+      context: .
+      dockerfile: airflow.Dockerfile
+    restart: always
+    environment:
+      DOCKER_UID: 1000
+      AIRFLOW_HOME : /project/services/airflow
+      PYTHONPATH : /project/src:/project/scripts
+      PROJECTPATH: /project
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow_postgres/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    volumes:
+      - ./services/airflow:/opt/airflow
+      - .:/project
+    depends_on:
+      - airflow_postgres
+    ports:
+      - 8080:8080
+    command: >
+      bash -c "
+      airflow db upgrade &&
+      airflow users create --username admin --password admin --firstname admin --lastname admin --role Admin --email admin@example.com &&
+      airflow webserver
+      "
+    networks:
+      - airflow_net
+
+  airflow_postgres:
+    container_name: "airflow_postgres"
+    image: postgres:14
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    networks:
+      - airflow_net
+    volumes:
+      - postgres_dataaa:/var/lib/postgresql/data
+
+volumes:
+  postgres_dataaa:
+
+networks:
+  airflow_net:
+    driver: bridge

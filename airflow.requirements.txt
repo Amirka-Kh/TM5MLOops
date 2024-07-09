@@ -1,0 +1,16 @@
+apache-airflow
+feast
+great_expectations
+dvc
+hydra-core
+pytest
+pandas
+scikit-learn
+pendulum
+shyaml
+mlflow
+giskard
+evidently
+Flask
+flask-session2
+psycopg2-binary
