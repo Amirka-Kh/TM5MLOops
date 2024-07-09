@@ -12,12 +12,12 @@ services:
     environment:
       DOCKER_UID: 1000
       AIRFLOW_HOME : /project/services/airflow
-      PYTHONPATH : /project/src:/project/scripts
+      PYTHONPATH : /project
       PROJECTPATH: /project
       AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow_postgres/airflow
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
     volumes:
-      - ./services/airflow:/opt/airflow
+      - ./services/airflow:/project/services/airflow
       - .:/project
     depends_on:
       - airflow_postgres
