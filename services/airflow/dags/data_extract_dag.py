@@ -5,10 +5,6 @@ from airflow.utils.dates import days_ago
 from datetime import timedelta
 import os
 
-from src.sample_data import sample_data
-from src.validate_data import validate_initial_data
-from src.version_data import version_data
-
 os.environ['HYDRA_FULL_ERROR'] = '1'
 
 default_args = {

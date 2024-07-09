@@ -10,7 +10,14 @@ This project aims to identify the key factors influencing Airbnb pricing using a
 ### Our pipeline
 
 Our pipeline consist now of two phases: data extraction and data preparation. We use *Apache Airflow* to orchestrate an 
-execution of our phases\jobs, and *zenml* for data preparation phase. Our data preparation pipeline looks as follow: 
+execution of our phases\jobs, and *zenml* for data preparation phase. Yet we have run all the pipeline steps except one,
+which requires `zenml` library, since we encounter a problem about dependencies. *Apache Airflow* requires different version
+of libraries, while *zenml* other, and since they both go as python package, therefore it is hard to separate them. We 
+tried to run *Apache Airflow* locally and via docker, however the issue with dependencies persist.
+
+![extract data dag](data/dag.png)
+
+Fortunately, when we run *zenml* pipeline alone, it works. Our data preparation pipeline looks as follows: 
 
 ![zenml pipeline](data/zenml_pipeline.png)
 
