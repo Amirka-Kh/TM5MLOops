@@ -1,12 +1,31 @@
+defaults:
+  - _self_
+  - experiment
+  - data_version
+  - model/model
+
 data:
   url: "https://storage.yandexcloud.net/sledobot.ru/Airbnb_Data.csv"
-  version: "1.7"
-  message: "Add data version 1.7"
+  version: "1.8"
+  message: "Add data version 1.8"
   sample_size: 0.2
   dataset_name: "sample.csv"
   repo: .
   remote: localstore
+#  - data/sample
+#  - data_version
+#  - model/model
+#  - experiment
+# - override hydra/launcher: joblib # submitit_local #joblib
+# - override hydra/sweeper: optuna
+# - override hydra/sweeper/sampler: grid
 
 hydra:
+  mode: MULTIRUN
+    # launcher:
+    #   n_jobs: -1
+  sweeper:
+     params:
+       +model: "mlpr"
   run:
     dir: ../outputs

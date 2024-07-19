@@ -1,0 +1,25 @@
+defaults:
+  - _self_
+
+folds: 3
+
+cv_evaluation_metric: "mean_test_f1"
+
+pyfunc_predict_fn: "predict_proba"
+
+metrics:
+  neg_mean_squared_error: neg_mean_squared_error
+  r2: r2
+evaluation_metric: r2
+
+#metrics:
+#  accuracy: "accuracy"
+#  f1: "f1"
+#evaluation_metric: "f1"
+
+# hydra:
+#   sweeper:
+#       sampler:
+#         seed: 8888
+#       # n_trials: 20 # number of times to try to optimize the search space
+#       direction: maximize # minimize

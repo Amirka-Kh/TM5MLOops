@@ -133,6 +133,8 @@ Phase 2: Data preparation/engineering
 
 @hydra.main(version_base="1.2", config_path="../configs", config_name="main")
 def read_datastore(cfg: DictConfig) -> Tuple[pd.DataFrame, str]:
+    print(OmegaConf.to_yaml(cfg))
+
     # Define location in datastore
     url = dvc.api.get_url(
         path=os.path.join("data/samples/sample.csv"),
