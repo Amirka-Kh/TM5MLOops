@@ -131,11 +131,8 @@ def validate_initial_data():
 Phase 2: Data preparation/engineering
 """
 
-
-def read_datastore() -> Tuple[pd.DataFrame, str]:
-    # Load configuration
-    cfg = OmegaConf.load('./configs/main.yaml')
-
+@hydra.main(version_base="1.2", config_path="../configs", config_name="main")
+def read_datastore(cfg: DictConfig) -> Tuple[pd.DataFrame, str]:
     # Define location in datastore
     url = dvc.api.get_url(
         path=os.path.join("data/samples/sample.csv"),
@@ -248,7 +245,7 @@ def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
 
 def validate_features(data: pd.DataFrame, version) -> pd.DataFrame:
     # Create a FileDataContext
-    context = FileDataContext(project_root_dir="../services")
+    context = FileDataContext(project_root_dir="/mnt/c/Users/amira/PycharmProjects/MLOps/services")
 
     # Connect a data source
     ds = context.sources.add_or_update_pandas(name="features_datasource")

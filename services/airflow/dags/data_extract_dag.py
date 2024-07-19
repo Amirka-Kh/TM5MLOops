@@ -28,7 +28,7 @@ with DAG(
     # Task 1: Extract a new sample of the data
     extract_task = BashOperator(
         task_id='extract_data',
-        bash_command='python3 $PYTHONPATH/src/sample_data.py',
+        bash_command='source $PYTHONPATH/venv/bin/activate && python $PYTHONPATH/src/sample_data.py',
     )
 
     # Task 2: Validate the sample using Great Expectations
@@ -40,7 +40,7 @@ with DAG(
     # Task 3: Version the sample
     version_task = BashOperator(
         task_id='version_data',
-        bash_command='python3 $PYTHONPATH/src/version_data.py',
+        bash_command='source $PYTHONPATH/venv/bin/activate && python $PYTHONPATH/src/version_data.py',
     )
 
     # Task 4: Load the sample to the data store

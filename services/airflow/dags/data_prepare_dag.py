@@ -36,7 +36,8 @@ with DAG(
     # Task to run the ZenML pipeline
     run_zenml_pipeline = BashOperator(
         task_id='run_zenml_pipeline',
-        bash_command='python3 $PYTHONPATH/src/prepare_data.py',
+        bash_command='source $PYTHONPATH/venv/bin/activate && python $PYTHONPATH/src/prepare_data.py',
+        cwd='/mnt/c/Users/amira/PycharmProjects/MLOps/',
     )
 
     # Define task dependencies
