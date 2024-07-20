@@ -1,11 +1,12 @@
 data:
-  url: "https://storage.yandexcloud.net/sledobot.ru/Airbnb_Data.csv"
-  version: "1.7"
-  message: "Add data version 1.7"
   sample_size: 0.2
-  dataset_name: "sample.csv"
   repo: .
   remote: localstore
+
+defaults:
+  - _self_
+  - data: sample
+  - data_version
 
 hydra:
   run:

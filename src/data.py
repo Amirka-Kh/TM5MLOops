@@ -17,6 +17,13 @@ def increment_version(version: str) -> str:
     return f"{major}.{minor}"
 
 
+def save_version_info(version: str, message: str, file_path: str) -> None:
+    """Save only the version and message to a separate YAML file."""
+    version_info = {'version': version, 'message': message}
+    with open(file_path, 'w') as f:
+        OmegaConf.save(OmegaConf.create(version_info), f)
+
+
 @hydra.main(version_base="1.2", config_path="../configs", config_name="main")
 def sample_data(cfg: DictConfig) -> None:
     start = datetime.datetime.now()
@@ -25,7 +32,7 @@ def sample_data(cfg: DictConfig) -> None:
     data = pd.read_csv(cfg.data.url)
 
     # Take seed for random sampling
-    version = cfg.data.version
+    version = cfg.version
     major, minor = map(int, version.split('.'))
 
     # Sample the data
@@ -41,8 +48,12 @@ def sample_data(cfg: DictConfig) -> None:
     # Update the version in the Hydra configuration
     new_version = increment_version(version)
     new_message = f"Add data version {new_version}"
-    OmegaConf.update(cfg, 'data.version', new_version)
-    OmegaConf.update(cfg, 'data.message', new_message)
+    OmegaConf.update(cfg, 'version', new_version)
+    OmegaConf.update(cfg, 'message', new_message)
+
+    # Save only the version and message to the separate YAML file
+    version_file_path = "/mnt/c/Users/amira/PycharmProjects/MLOps/configs/data_version.yaml"
+    save_version_info(new_version, new_message, version_file_path)
 
     end = datetime.datetime.now()
     print(f"Data sampling was successful")
@@ -94,7 +105,8 @@ def validate_initial_data():
     validator.expect_column_values_to_be_between('review_scores_rating', 0, 100)
 
     # Run the validation
-    validation_result = validator.validate()
+    validator.validate()
+    assert ex1['success']
 
     validator.save_expectation_suite(discard_failed_expectations=True)
 
@@ -115,4 +127,4 @@ def validate_initial_data():
 
 
 if __name__ == "__main__":
-    sample_data()
+    validate_initial_data()

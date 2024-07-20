@@ -1,0 +1,44 @@
+data:
+  url: https://storage.yandexcloud.net/sledobot.ru/Airbnb_Data.csv
+  version: '1.8'
+  message: Add data version 1.8
+  sample_size: 0.2
+  dataset_name: sample.csv
+  repo: .
+  remote: localstore
+experiment_name: mlops_experiment
+run_name: multi_run
+test_size: 0.2
+random_state: 88
+cv_n_jobs: -1
+train_data_version: '1.7'
+test_data_version: '1.8'
+data_version: v4
+model:
+  folds: 3
+  evaluation_metric: f1
+  cv_evaluation_metric: mean_test_f1
+  pyfunc_predict_fn: predict_proba
+  metrics:
+    accuracy: accuracy
+    f1: f1
+  model_name: random_forest
+  artifact_path: basic_rf
+  tag_key: model
+  tag_value: basic RF
+  module_name: sklearn.neural_network
+  class_name: MLPRegressor
+  params:
+    n_estimators:
+    - 100
+    - 200
+    - 500
+    criterion:
+    - gini
+    - entropy
+    - log_loss
+    random_state:
+    - 88
+    hidden_layer_sizes: (100, 50),
+    max_iter: 500,
+    verbose: True,
