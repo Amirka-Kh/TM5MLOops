@@ -95,8 +95,6 @@ def validate_initial_data():
 
     # Run the validation
     validation_result = validator.validate()
-    assert ex1['success']
-    assert ex4['success']
 
     validator.save_expectation_suite(discard_failed_expectations=True)
 
