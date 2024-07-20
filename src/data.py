@@ -29,6 +29,7 @@ def sample_data(cfg: DictConfig) -> None:
     start = datetime.datetime.now()
 
     # Read data from URL
+    print('started downloading a data')
     data = pd.read_csv(cfg.data.url)
 
     # Take seed for random sampling
@@ -127,4 +128,5 @@ def validate_initial_data():
 
 
 if __name__ == "__main__":
+    sample_data()
     validate_initial_data()

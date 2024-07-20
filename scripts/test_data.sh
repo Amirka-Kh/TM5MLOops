@@ -7,12 +7,9 @@ set -e
 source ../venv/bin/activate
 
 # Take a data sample and validate it
-echo "Sampling data..."
-python src/data.py
+echo "Sampling data and validating data.."
 
-# Validate the data sample
-echo "Validating data..."
-if python src/validate_data.py; then
+if python src/data.py; then
     echo "Data validation passed."
 
     # Version the data sample

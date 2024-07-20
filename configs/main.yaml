@@ -1,6 +1,6 @@
 data:
   sample_size: 0.2
-  repo: .
+  repo: /mnt/c/Users/amira/PycharmProjects/MLOps
   remote: localstore
 
 defaults:

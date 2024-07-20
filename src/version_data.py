@@ -6,8 +6,8 @@ import os
 
 @hydra.main(version_base="1.2", config_path="../configs", config_name="main")
 def version_data(cfg: DictConfig):
-    version = cfg.data.version
-    message = cfg.data.message
+    version = cfg.version
+    message = cfg.message
 
     # Stage and commit changes using DVC
     subprocess.run(["git", "add", "."])

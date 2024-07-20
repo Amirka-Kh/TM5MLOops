@@ -35,7 +35,7 @@ def sample_data(cfg: DictConfig) -> None:
     data = pd.read_csv(cfg.data.url)
 
     # Take seed for random sampling
-    version = cfg.data.version
+    version = cfg.version
     major, minor = map(int, version.split('.'))
 
     # Sample the data
@@ -50,8 +50,8 @@ def sample_data(cfg: DictConfig) -> None:
     # Update the version in the Hydra configuration
     new_version = increment_version(version)
     new_message = f"Add data version {new_version}"
-    OmegaConf.update(cfg, 'data.version', new_version)
-    OmegaConf.update(cfg, 'data.message', new_message)
+    OmegaConf.update(cfg, 'version', new_version)
+    OmegaConf.update(cfg, 'message', new_message)
 
     end = datetime.datetime.now()
     print(f"Data sampling was successful")
@@ -130,22 +130,24 @@ def validate_initial_data():
 """
 Phase 2: Data preparation/engineering
 """
-
+BASE_PATH = os.path.expandvars("$PYTHONPATH")
 @hydra.main(version_base="1.2", config_path="../configs", config_name="main")
-def read_datastore(cfg: DictConfig) -> Tuple[pd.DataFrame, str]:
+def read_datastore(cfg: DictConfig, base_path: BASE_PATH) -> Tuple[pd.DataFrame, str]:
     # Define location in datastore
     url = dvc.api.get_url(
         path=os.path.join("data/samples/sample.csv"),
         repo=os.path.join(cfg.data.repo),
-        rev=str(cfg.data.version),
+        rev=str(cfg.version),
         remote=cfg.data.remote
     )
+    url = base_path + url
+    print(url)
 
     # Define dataframe
     df = pd.read_csv(url)
 
     # Send dataframe and version
-    version = str(cfg.data.version)
+    version = str(cfg.version)
     return df, version
 
 

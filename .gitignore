@@ -168,6 +168,7 @@ datastore
 /services/gx/expectations/feature_expectations.json
 /services/gx/checkpoints/features_validation_checkpoint.yml
 /mlruns/*
+/multirun/*
 /multirun/*/multirun.yaml
 /multirun/*/0/.hydra/overrides.yaml
 /pipelines/
