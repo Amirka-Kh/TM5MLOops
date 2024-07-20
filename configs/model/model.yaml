@@ -3,14 +3,15 @@ defaults:
 
 folds: 3
 
-cv_evaluation_metric: "mean_test_f1"
+cv_evaluation_metric: "mean_test_neg_mean_squared_error"
 
-pyfunc_predict_fn: "predict_proba"
+pyfunc_predict_fn: "predict"
 
 metrics:
   neg_mean_squared_error: neg_mean_squared_error
   r2: r2
 evaluation_metric: r2
+
 
 #metrics:
 #  accuracy: "accuracy"

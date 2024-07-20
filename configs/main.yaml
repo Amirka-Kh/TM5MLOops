@@ -12,6 +12,7 @@ data:
   dataset_name: "sample.csv"
   repo: .
   remote: localstore
+  target_cols: ["log_price"]
 #  - data/sample
 #  - data_version
 #  - model/model
