@@ -132,7 +132,7 @@ Phase 2: Data preparation/engineering
 """
 BASE_PATH = os.path.expandvars("$PYTHONPATH")
 @hydra.main(version_base="1.2", config_path="../configs", config_name="main")
-def read_datastore(cfg: DictConfig, base_path: BASE_PATH) -> Tuple[pd.DataFrame, str]:
+def read_datastore(cfg: DictConfig, base_path=BASE_PATH) -> Tuple[pd.DataFrame, str]:
     # Define location in datastore
     url = dvc.api.get_url(
         path=os.path.join("data/samples/sample.csv"),
