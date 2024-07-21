@@ -4,15 +4,12 @@
 set -e
 
 # Activate the virtual environment
-source ../venv/Scripts/activate
+source ../venv/bin/activate
 
-# Take a data sample
-echo "Sampling data..."
-python src/sample_data.py
+# Take a data sample and validate it
+echo "Sampling data and validating data.."
 
-# Validate the data sample
-echo "Validating data..."
-if python src/validate_data.py; then
+if python src/data.py; then
     echo "Data validation passed."
 
     # Version the data sample
