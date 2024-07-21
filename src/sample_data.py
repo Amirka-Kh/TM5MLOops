@@ -1,6 +1,7 @@
 from typing import Tuple, Any
 
 import hydra
+import yaml
 from omegaconf import DictConfig, OmegaConf
 import dvc.api
 
@@ -130,9 +131,12 @@ def validate_initial_data():
 """
 Phase 2: Data preparation/engineering
 """
-BASE_PATH = os.path.expandvars("$PYTHONPATH")
-@hydra.main(version_base="1.2", config_path="../configs", config_name="main")
-def read_datastore(cfg: DictConfig, base_path=BASE_PATH) -> Tuple[pd.DataFrame, str]:
+# BASE_PATH = os.path.expandvars("$PYTHONPATH")
+# def read_datastore():
+# @hydra.main(version_base="1.2", config_path="../configs", config_name="main")
+def read_datastore() -> Tuple[pd.DataFrame, str]:
+    cfg = OmegaConf.load('./configs/main.yaml')
+
     # Define location in datastore
     url = dvc.api.get_url(
         path=os.path.join("data/samples/sample.csv"),
@@ -140,14 +144,16 @@ def read_datastore(cfg: DictConfig, base_path=BASE_PATH) -> Tuple[pd.DataFrame, 
         rev=str(cfg.version),
         remote=cfg.data.remote
     )
-    url = base_path + url
-    print(url)
+    if url.startswith("/mnt/c/Users/") and "C:\\" in url:
+        index_dvc = url.find('.dvc')
+        index_datastore = url.find('datastore')
+        repo = url[:index_dvc]
+        path = url[index_datastore:]
+        url = repo + path
 
-    # Define dataframe
     df = pd.read_csv(url)
-
-    # Send dataframe and version
     version = str(cfg.version)
+    # return '/mnt/c/Users/amira/PycharmProjects/MLOps/datastore/files/md5/10/95b33827c28ec6e182949f13100f8a', '1.18'
     return df, version
 
 
@@ -347,4 +353,4 @@ def validate_features(data: pd.DataFrame, version) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    sample_data()
+    read_datastore()
