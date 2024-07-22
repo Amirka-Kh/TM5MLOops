@@ -135,12 +135,13 @@ Phase 2: Data preparation/engineering
 # @hydra.main(version_base="1.2", config_path="../configs", config_name="main")
 def read_datastore() -> Tuple[pd.DataFrame, str]:
     cfg = OmegaConf.load('./configs/main.yaml')
+    cfg_version = OmegaConf.load('./configs/data_version.yaml')
 
     # Define location in datastore
     url = dvc.api.get_url(
         path=os.path.join("data/samples/sample.csv"),
         repo=os.path.join(cfg.data.repo),
-        rev=str(cfg.version),
+        rev=str(cfg_version.version),
         remote=cfg.data.remote
     )
     if url.startswith("/mnt/c/Users/") and "C:\\" in url:
@@ -153,7 +154,7 @@ def read_datastore() -> Tuple[pd.DataFrame, str]:
     df = pd.read_csv(url)
 
     # Send dataframe and version
-    version = str(cfg.version)
+    version = str(cfg_version.version)
     return df, version
 
 

@@ -6,11 +6,11 @@ from omegaconf import OmegaConf
 def run(args):
     cfg = args
 
-    train_data_version = cfg.train_data_version
+    train_data_version = str(cfg.version)
 
     X_train, y_train = load_features(name="features_target", version=train_data_version)
 
-    test_data_version = cfg.test_data_version
+    test_data_version = '1.' + str(int(train_data_version[2:]) - 1)
 
     X_test, y_test = load_features(name="features_target", version=test_data_version)
 
