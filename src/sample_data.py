@@ -153,7 +153,7 @@ def read_datastore() -> Tuple[pd.DataFrame, str]:
     df = pd.read_csv(url)
 
     # Send dataframe and version
-    version = str(cfg.data.version)
+    version = str(cfg.version)
     return df, version
 
 

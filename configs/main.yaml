@@ -1,22 +1,13 @@
 data:
-  url: "https://storage.yandexcloud.net/sledobot.ru/Airbnb_Data.csv"
-  version: "1.8"
-  message: "Add data version 1.8"
+#  url: "https://storage.yandexcloud.net/sledobot.ru/Airbnb_Data.csv"
+#  version: "1.8"
+#  message: "Add data version 1.8"
   sample_size: 0.2
   repo: /mnt/c/Users/amira/PycharmProjects/MLOps
   remote: localstore
   target_cols: ["log_price"]
-#  - data/sample
-#  - data_version
-#  - model/model
-#  - experiment
-# - override hydra/launcher: joblib # submitit_local #joblib
-# - override hydra/sweeper: optuna
-# - override hydra/sweeper/sampler: grid
   dataset_name: "sample.csv"
 
-version: '1.18'
-message: Add data version 1.18
 
 defaults:
   - _self_
@@ -34,3 +25,6 @@ hydra:
        +model: "mlpr"
   run:
     dir: ../outputs
+  # - override hydra/launcher: joblib # submitit_local #joblib
+  # - override hydra/sweeper: optuna
+  # - override hydra/sweeper/sampler: grid

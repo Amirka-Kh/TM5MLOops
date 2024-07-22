@@ -1,4 +1,2 @@
-version: '1.18'
-message: Add data version 1.18
-
-data_version: v4
+version: '1.19'
+message: Add data version 1.19
