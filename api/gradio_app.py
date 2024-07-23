@@ -94,6 +94,16 @@ def predict(property_type=None, room_type=None, accommodates=None, bathrooms=Non
         headers={"Content-Type": "application/json"},
     )
 
+    try:
+        my_response = requests.post(
+            url=f"http://localhost:5001/predict",
+            data=example,
+            headers={"Content-Type": "application/json"},
+        )
+        print(my_response.json())
+    except Exception as err:
+        print(err)
+
     # Return the model's prediction
     return response.json()
 
