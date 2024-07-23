@@ -7,3 +7,23 @@ entry_points:
 
   evaluate:
     command: "python src/evaluate.py"
+
+  predict:
+    parameters:
+      version:
+        type: string
+        default: "1.19"
+      hostname:
+        type: string
+        default: "localhost"
+      port:
+        type: float
+        default: 5154
+      random_state:
+        type: float
+        default: 89
+
+    command: "python src/predict.py ++version={version} ++hostname={hostname} ++port={port} ++random_state={random_state}"
+
+  deploy:
+    command: "sh scripts/deploy_docker.sh"

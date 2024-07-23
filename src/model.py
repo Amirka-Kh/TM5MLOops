@@ -13,13 +13,13 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-def load_features(name, version, size=1):
+def load_features(name, version, random_state=88, size=1):
     client = Client()
-    l = client.list_artifact_versions(name=name, tag=version, sort_by="version").items
+    l = client.list_artifact_versions(name=name, tag=str(version), sort_by="version").items
     l.reverse
 
     df = l[0].load()
-    df = df.sample(frac=size, random_state=88)
+    df = df.sample(frac=size, random_state=random_state)
 
     print("size of df is ", df.shape)
     print("df columns: ", df.columns)
