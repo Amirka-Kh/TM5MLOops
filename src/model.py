@@ -21,13 +21,13 @@ def load_features(name, version, random_state=88, size=1):
     df = l[0].load()
     df = df.sample(frac=size, random_state=random_state)
 
-    print("size of df is ", df.shape)
-    print("df columns: ", df.columns)
+    # print("size of df is ", df.shape)
+    # print("df columns: ", df.columns)
 
     X = df.drop(columns=['log_price', 'id']) #bed_type, room_type, city, name
     y = df['log_price']
 
-    print("shapes of X,y = ", X.shape, y.shape)
+    # print("shapes of X,y = ", X.shape, y.shape)
 
     return X, y
 

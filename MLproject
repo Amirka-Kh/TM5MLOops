@@ -18,7 +18,7 @@ entry_points:
         default: "localhost"
       port:
         type: float
-        default: 5154
+        default: 5151
       random_state:
         type: float
         default: 89
