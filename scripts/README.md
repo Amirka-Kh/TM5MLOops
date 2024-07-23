@@ -6,8 +6,7 @@ We have the following scripts for now:
 * `test_data.ps1` script for PowerShell, it needs adjustments since now it save the output of `dvc` 
 command in `scripts` folder, which is not intended behaviour
 
-
-`./scripts/predict_samples.sh` output:
+To test your prediction service run `./scripts/predict_samples.sh`. The output which I got after script run:
 ```
 Running mlflow with version=1.19 and random_state=14...
 {'predictions': [5.190058050507108]}
