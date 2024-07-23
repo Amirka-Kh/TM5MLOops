@@ -1,0 +1,53 @@
+name: Example testing
+
+on:
+  push:
+    branches:
+      - main
+      - phase5
+    paths:
+      - 'src'
+      - 'scripts'
+
+permissions:
+  contents: read
+
+jobs:
+  test-code:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+
+    steps:
+      - name: Checking out our code
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.0'
+          cache: 'pip'
+
+      - name: install python packages
+        run: |
+            python3.11 -m pip install --upgrade pip 
+            pip3.11 install -r installed_requirements.txt 
+
+      - name: Run your app
+        run: python3.11 src/app.py &
+
+      - name: Export variables
+        run: | 
+          echo $PWD
+          export ZENML_CONFIG_PATH=$PWD/services/zenml
+          export PROJECTPATH=$PWD
+          export AIRFLOW_HOME=$PWD/services/airflow
+          export PYTHONPATH=$PWD/src
+
+      - name: Run ZenML server
+        run: zenml down && zenml up
+
+      - name: Test with pytest
+        run: pytest tests

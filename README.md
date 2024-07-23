@@ -1,3 +1,5 @@
+![Test code workflow](https://github.com/Amirka-Kh/TM5MLOops/actions/workflows/test-code.yaml/badge.svg)
+
 # TM5MLOops
 
 ### Background
