@@ -1,4 +1,5 @@
-![Test code workflow](https://github.com/Amirka-Kh/TM5MLOops/actions/workflows/test-code.yaml/badge.svg)
+![source code testing](https://github.com/Amirka-Kh/TM5MLOops/actions/workflows/test-code.yaml/badge.svg)
+![model testing](https://github.com/Amirka-Kh/TM5MLOops/actions/workflows/validate-model.yaml/badge.svg)
 
 # TM5MLOops
 

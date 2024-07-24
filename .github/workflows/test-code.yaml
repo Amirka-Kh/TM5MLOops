@@ -5,9 +5,9 @@ on:
     branches:
       - main
       - phase5
-    paths:
-      - 'src'
-      - 'scripts'
+#    paths:
+#      - 'src'
+#      - 'scripts'
 
 permissions:
   contents: read
