@@ -1,49 +1,110 @@
 ![source code testing](https://github.com/Amirka-Kh/TM5MLOops/actions/workflows/test-code.yaml/badge.svg)
 ![model testing](https://github.com/Amirka-Kh/TM5MLOops/actions/workflows/validate-model.yaml/badge.svg)
 
-# TM5MLOops
+# Airbnb AI Pricing
 
-### Background
 
-The current process for pricing Airbnb accommodations is often inconsistent, leading to listings that are either 
-overpriced and stay vacant or underpriced, causing potential revenue loss for hosts. 
 
-This project aims to identify the key factors influencing Airbnb pricing using an extensive dataset of global accommodations. By understanding what drives pricing variability and how it impacts revenue, we aim to develop a model that helps hosts price their properties competitively and realistically. This will enhance hosts' revenue optimization strategies and improve occupancy rates.
+## Introduction
 
-### Our pipeline
+---
 
-Our pipeline consist now of two phases: data extraction and data preparation. We use *Apache Airflow* to orchestrate an 
-execution of our phases\jobs, and *zenml* for data preparation phase. Yet we have run all the pipeline steps except one,
-which requires `zenml` library, since we encounter a problem about dependencies. *Apache Airflow* requires different version
-of libraries, while *zenml* other, and since they both go as python package, therefore it is hard to separate them. We 
-tried to run *Apache Airflow* locally and via docker, however the issue with dependencies persist.
+This project aims to address the inconsistent pricing of Airbnb listings, which can lead to properties being overpriced or underpriced. By analyzing a comprehensive dataset of global accommodations, we aim to identify key factors influencing Airbnb pricing. Our goal is to develop a model that helps hosts price their properties competitively and realistically, thereby optimizing revenue and improving occupancy rates. This data-driven approach will benefit both hosts and guests by providing a reliable and efficient pricing strategy.
 
-![extract data dag](data/dag.png)
+## Motivation
 
-Fortunately, when we run *zenml* pipeline alone, it works. Our data preparation pipeline looks as follows: 
+---
 
-![zenml pipeline](data/zenml_pipeline.png)
+Inconsistent pricing affects both individual hosts and the overall perception of Airbnb as a platform. A data-driven approach to pricing can provide significant benefits, including increased revenue, improved occupancy rates, and a better guest experience.
 
-How it works:
-- `extract_data` prepares a dataframe to work with in next steps,
-- `transform_data` fills missing values and adjust feature values,
-- `validate_data` validate if data transformation is applied correctly,
-- `load` loads\saves artifacts for future analysis (model training)
+## Our Project Core
 
-Example of artifacts:
-```azure
-$ zenml artifact list
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━┓
-┃                  ID                  │ NAME                 │ TAGS                 ┃
-┠──────────────────────────────────────┼──────────────────────┼──────────────────────┨
-┃ 8fd383bd-9bb0-4ed7-8c22-ba8a65b20891 │ extracted_data       │ ['data_preparation'] ┃
-┠──────────────────────────────────────┼──────────────────────┼──────────────────────┨
-┃ 2a6ca3a5-cd20-43a9-b1f4-e6ed46b81ea8 │ data_version         │ ['data_preparation'] ┃
-┠──────────────────────────────────────┼──────────────────────┼──────────────────────┨
-┃ dc80a34c-92f7-401d-8b18-ec8d8ac4f10b │ input_features       │ ['data_preparation'] ┃
-┠──────────────────────────────────────┼──────────────────────┼──────────────────────┨
-┃ aef284ff-84cf-4d6e-93a8-8a360ed08652 │ valid_input_features │ ['data_preparation'] ┃
-┠──────────────────────────────────────┼──────────────────────┼──────────────────────┨
-┃ 745144bd-08b4-4091-8c9d-672ac612877a │ features_target      │ ['1.7']              ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━┛
+---
+
+We applied the CRISP-ML process on this project which begins with business and data understanding till model deployment 
+and monitoring. The phases of the process are as follows:
+
+1. **Business and data understanding**
+    - Elicit the project requirements and formulate business problem
+    - Specify business goals and machine learning goals
+    - Determine the success criteria for business and machine learning modeling 
+    - Analyse the risks and set mitigation approaches
+
+2. **Data engineering/Preparation** 
+    - Create ETL pipelines using Apache Airflow
+    - Perform data transformation
+    - Check the quality of the data and perform data cleaning
+    - Create ML-ready features and store them in feature stores such as feast
+   
+3. **Model engineering**
+    - Select and build ML models
+    - Perform and track experiments using MLflow
+    - Optimize models and select best models
+    - model versioning in model registry of MLflow
+
+4. **Model validation**
+    - Prepare one model for production
+    - Check the success criteria of machine learning
+    - Check the business and machine learning modeling objectives
+    - The business stakeholders take part in this phase
+    - Check if deploying the model is feasible
+    - Check the quality of the model for production
+    - Select one model to be deployed
+
+5. **Model deployment**
+    - Search for options available to serve the model
+    - Deploy the model
+    - Create a REST endpoint for your model prediction using Flask or FastAPI
+    - Create a UI for your model using streamlit or pure HTML and JS.
+    - Create a CI/CD pipeline for your model using Github Actions and Docker
+
+## Data Overview
+
+---
+
+Our dataset, sourced from Kaggle, comprises 74,111 rows and 29 columns, including 11 numeric features and several categorical features such as property type, room type, and cancellation policy. The dataset contains missing values, which have been handled through imputation techniques. Key features include property type, room type, the number of accommodations, bedrooms, and bathrooms, all of which significantly influence the listing price.
+
+## Repository Structure
+
+---
+
+Here's a detailed overview of our project structure and how each component is linked to the project context:
+
 ```
+.
+├── .dvc                  # Contains DVC files for version controlling data and model artifacts
+├── .github               # GitHub-specific files (e.g., workflows)
+├── api                   # Contains the code for the API that serves the predictive model
+├── configs               # Configuration files for different aspects of the project, such as data paths, model parameters, etc
+├── data                  # Raw and processed data used for training and evaluating models (dvc metadata)
+├── docs                  # Project documentation
+├── mlflow.requirements.txt # Dependencies for running MLflow tracking and experiments
+├── MLproject             # MLflow project definition
+├── models                # Trained models and model artifacts
+├── multirun              # Multi-run configurations
+├── notebooks             # Jupyter notebooks for exploration and experimentation
+├── outputs               # Hydra configuration logs 
+├── pipelines             # Scripts for building data processing
+├── README.md             # Project overview (this file)
+├── scripts               # Utility scripts for various tasks, such as data preprocessing and versioning
+├── services              # Service layer code
+├── src                   # Source code for the project
+├── tests                 # Unit and integration tests
+```
+
+## Technology Stack
+
+-----------
+<div style="text-align: center;">
+<img src="data/images/img.png" alt="description" width="400" height="300">
+</div>
+
+### Links
+
+- [How to run prepare data and do training](src/README.md)
+- [How to work with hydra configurations](configs/README.md)
+- [How to start serving models via Flask](api/README.md)
+- [How to use scripts](scripts/README.md)
+
+
+
