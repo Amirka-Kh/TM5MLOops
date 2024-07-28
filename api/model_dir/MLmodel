@@ -1,0 +1,69 @@
+artifact_path: basic_rf
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.0
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.5.1
+mlflow_version: 2.14.3
+model_size_bytes: 35463808
+model_uuid: f616c71c830842efaf69b48300be5dcb
+run_id: 3016d129ade24614995f5fcb32650c8b
+saved_input_example_info:
+  artifact_path: input_example.json
+  format: tf-serving
+  type: ndarray
+signature:
+  inputs: '[{"type": "long", "name": "property_type", "required": true}, {"type":
+    "string", "name": "room_type", "required": true}, {"type": "double", "name": "accommodates",
+    "required": true}, {"type": "double", "name": "bathrooms", "required": true},
+    {"type": "string", "name": "bed_type", "required": true}, {"type": "long", "name":
+    "cancellation_policy", "required": true}, {"type": "long", "name": "cleaning_fee",
+    "required": true}, {"type": "string", "name": "city", "required": true}, {"type":
+    "long", "name": "host_has_profile_pic", "required": true}, {"type": "long", "name":
+    "host_identity_verified", "required": true}, {"type": "double", "name": "host_response_rate",
+    "required": true}, {"type": "long", "name": "instant_bookable", "required": true},
+    {"type": "double", "name": "latitude", "required": true}, {"type": "double", "name":
+    "longitude", "required": true}, {"type": "string", "name": "name", "required":
+    true}, {"type": "double", "name": "number_of_reviews", "required": true}, {"type":
+    "double", "name": "review_scores_rating", "required": true}, {"type": "string",
+    "name": "thumbnail_url", "required": true}, {"type": "double", "name": "bedrooms",
+    "required": true}, {"type": "double", "name": "beds", "required": true}, {"type":
+    "double", "name": "zipcode_freq", "required": true}, {"type": "double", "name":
+    "neighbourhood_freq", "required": true}, {"type": "double", "name": "detector",
+    "required": true}, {"type": "double", "name": "dryer", "required": true}, {"type":
+    "double", "name": "essentials", "required": true}, {"type": "double", "name":
+    "friendly", "required": true}, {"type": "double", "name": "heating", "required":
+    true}, {"type": "double", "name": "smoke", "required": true}, {"type": "double",
+    "name": "tv", "required": true}, {"type": "double", "name": "apartment", "required":
+    true}, {"type": "double", "name": "bed", "required": true}, {"type": "double",
+    "name": "bedroom", "required": true}, {"type": "double", "name": "private", "required":
+    true}, {"type": "double", "name": "restaurants", "required": true}, {"type": "double",
+    "name": "room", "required": true}, {"type": "double", "name": "walk", "required":
+    true}, {"type": "integer", "name": "first_review_year", "required": true}, {"type":
+    "long", "name": "first_review_month", "required": true}, {"type": "double", "name":
+    "first_review_day", "required": true}, {"type": "integer", "name": "last_review_year",
+    "required": true}, {"type": "long", "name": "last_review_month", "required": true},
+    {"type": "double", "name": "last_review_day", "required": true}, {"type": "integer",
+    "name": "host_since_year", "required": true}, {"type": "long", "name": "host_since_month",
+    "required": true}, {"type": "double", "name": "host_since_day", "required": true},
+    {"type": "double", "name": "room_type_Private room", "required": true}, {"type":
+    "double", "name": "room_type_Shared room", "required": true}, {"type": "double",
+    "name": "bed_type_Couch", "required": true}, {"type": "double", "name": "bed_type_Futon",
+    "required": true}, {"type": "double", "name": "bed_type_Pull-out Sofa", "required":
+    true}, {"type": "double", "name": "bed_type_Real Bed", "required": true}, {"type":
+    "double", "name": "city_Chicago", "required": true}, {"type": "double", "name":
+    "city_DC", "required": true}, {"type": "double", "name": "city_LA", "required":
+    true}, {"type": "double", "name": "city_NYC", "required": true}, {"type": "double",
+    "name": "city_SF", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+  params: null
+utc_time_created: '2024-07-21 17:52:13.554973'

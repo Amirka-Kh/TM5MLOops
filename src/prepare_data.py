@@ -31,19 +31,7 @@ def validate_data(data: pd.DataFrame, version: str) -> Annotated[pd.DataFrame, A
 
 
 @step(enable_cache=False)
-def load(data: pd.DataFrame, version: str) -> None:
-    load_features(data, version)
-
-
-@pipeline()
-def data_prepare_pipeline():
-    data, version = extract_data()
-    data = transform_data(data)
-    data = validate_data(data, version)
-    load(data, version)
-
-
-def load_features(df: pd.DataFrame, version) -> None:
+def load_data(df: pd.DataFrame, version: str) -> None:
     # version is your custom version (set it to tags)
     zenml.save_artifact(data=df, name="features_target", tags=[version])
 
@@ -60,6 +48,14 @@ def load_features(df: pd.DataFrame, version) -> None:
 
     # Check output
     print(df.head())
+
+
+@pipeline()
+def data_prepare_pipeline():
+    data, version = extract_data()
+    data = transform_data(data)
+    data = validate_data(data, version)
+    load_data(data, version)
 
 
 if __name__ == "__main__":
