@@ -81,7 +81,7 @@ Zukhra: business understanding, data analysis, model evaluation
 
 Amir: data preparation, data versioning, application build, CI/CD configuration
 
-You can view detailed plan and its completion by this link [(https://docs.google.com/spreadsheets/d/16rn_4RmgNRX4sfpjhVMVTUwoDpTVk2LV-2Xcvrw7c9I/edit?gid=0#gid=0)]
+You can view detailed plan and its completion by this [link](https://docs.google.com/spreadsheets/d/16rn_4RmgNRX4sfpjhVMVTUwoDpTVk2LV-2Xcvrw7c9I/edit?gid=0#gid=0)
 
 ## Repository Structure
 
