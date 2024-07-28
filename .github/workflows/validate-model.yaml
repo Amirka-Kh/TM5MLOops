@@ -3,7 +3,14 @@ name: Test Workflow
 on:
   push:
     branches:
+      - main
       - phase5
+    paths:
+      - 'src'
+      - 'scripts'
+      - 'services/airflow/dags'
+      - 'tests'
+      - 'configs'
 
 jobs:
   test:
@@ -15,3 +22,17 @@ jobs:
 
       - name: Run tests
         run: echo "Running tests..."
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.0'
+          cache: 'pip'
+
+      - name: install python packages
+        run: |
+            python3.11 -m pip install --upgrade pip 
+            pip3.11 install -r airflow.requirements.txt 
+
+      - name: Run your app
+        run: python3.11 -m airflow dags test data_extract_dag
