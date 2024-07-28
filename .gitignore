@@ -169,6 +169,8 @@ datastore
 /services/gx/checkpoints/features_validation_checkpoint.yml
 /mlruns/*
 /multirun/*
+multirun/*
+mlruns/*
 /multirun/*/multirun.yaml
 /multirun/*/0/.hydra/overrides.yaml
 /pipelines/
@@ -178,3 +180,5 @@ datastore
 /services/zenml/local_stores/*
 /services/airflow/*.err
 /services/airflow/*.out
+myenv/*
+.vscode/*
