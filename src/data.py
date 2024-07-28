@@ -53,7 +53,7 @@ def sample_data(cfg: DictConfig) -> None:
     OmegaConf.update(cfg, 'message', new_message)
 
     # Save only the version and message to the separate YAML file
-    version_file_path = "/mnt/c/Users/amira/PycharmProjects/MLOps/configs/data_version.yaml"
+    version_file_path = "/Users/andreascoclet/TM5MLOops/configs/data_version.yaml"
     save_version_info(new_version, new_message, version_file_path)
 
     end = datetime.datetime.now()

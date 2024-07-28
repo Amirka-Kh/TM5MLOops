@@ -3,7 +3,7 @@ data:
 #  version: "1.8"
 #  message: "Add data version 1.8"
   sample_size: 0.2
-  repo: /mnt/c/Users/amira/PycharmProjects/MLOps
+  repo: /Users/andreascoclet/TM5MLOops/
   remote: localstore
   target_cols: ["log_price"]
   dataset_name: "sample.csv"
@@ -18,13 +18,8 @@ defaults:
 
 hydra:
   mode: MULTIRUN
-    # launcher:
-    #   n_jobs: -1
   sweeper:
      params:
-       +model: "mlpr"
+       +model: "mlpr, neural_net"
   run:
     dir: ../outputs
-  # - override hydra/launcher: joblib # submitit_local #joblib
-  # - override hydra/sweeper: optuna
-  # - override hydra/sweeper/sampler: grid

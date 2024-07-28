@@ -1,26 +1,20 @@
-model_name: random_forest
-artifact_path: basic_rf
+model_name: mlp_regressor
+artifact_path: basic_mlp
 
 tag_key: "model"
-tag_value: "basic RF"
+tag_value: "basic MLP"
 
 module_name: "sklearn.neural_network"
 class_name: "MLPRegressor"
 
 params:
-    hidden_layer_sizes: (100, 50)
-    max_iter: 500
-    verbose: True
+  hidden_layer_sizes: [100, 50]
+  max_iter: 500
+  verbose: True
 
 param_grid:
   hidden_layer_sizes:
-    - "(50,)"
-    - "(100, 50)"
-    - "(150, 100, 50)"
+    - (50,)
+    - (100, 50)
+    - (150, 100, 50)
   max_iter: [200, 500, 1000]
-# hydra:
-#   sweeper:
-#       params:
-#         +params.n_estimators: "100, 200, 500"
-#         +params.criterion: "'gini', 'entropy', 'log_loss'"
-#         +params.random_state: 88
