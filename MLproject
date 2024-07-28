@@ -25,5 +25,11 @@ entry_points:
 
     command: "python src/predict.py ++version={version} ++hostname={hostname} ++port={port} ++random_state={random_state}"
 
+  transform:
+    command: "python src/prepare_data.py"
+
+  extract:
+    command: "source env/bin/activate && airflow dags test data_extract_dag"
+
   deploy:
     command: "sh scripts/deploy_docker.sh"
