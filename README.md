@@ -59,9 +59,11 @@ and monitoring. The phases of the process are as follows:
     - Create a CI/CD pipeline for your model using Github Actions and Docker
   
 ### Models
+Using these links you can access our drive where the models are stored. 
 
-[random forest champion](https://drive.google.com/file/d/1-sM-t5uTrx7r9FUEV6yUE7-dge6o-kEn/view?usp=sharing)
-[random forest challenger](https://drive.google.com/file/d/142BOvFj5CHGX7DTnnyObVnnNyjN1npEH/view?usp=sharing)
+[Random Forest Champion](https://drive.google.com/file/d/1-sM-t5uTrx7r9FUEV6yUE7-dge6o-kEn/view?usp=sharing)
+
+[Random Forest Challenger](https://drive.google.com/file/d/142BOvFj5CHGX7DTnnyObVnnNyjN1npEH/view?usp=sharing)
 
 ## Data Overview
 
