@@ -75,11 +75,11 @@ Our dataset, sourced from Kaggle, comprises 74,111 rows and 29 columns, includin
 
 In the project we divided tasks according to our roles and skills:
 
-Andreas: data transformation, data analysis, model training
+Andreas: data transformation, data analysis, model training.
 
-Zukhra: business understanding, data analysis, model evaluation
+Zukhra: business understanding, data analysis, model evaluation.
 
-Amir: data preparation, data versioning, application build, CI/CD configuration
+Amir: data preparation, data versioning, application build, CI/CD configuration.
 
 You can view detailed plan and its completion by this [link](https://docs.google.com/spreadsheets/d/16rn_4RmgNRX4sfpjhVMVTUwoDpTVk2LV-2Xcvrw7c9I/edit?gid=0#gid=0)
 
