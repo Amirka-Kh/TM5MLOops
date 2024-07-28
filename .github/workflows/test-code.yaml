@@ -5,9 +5,12 @@ on:
     branches:
       - main
       - phase5
-#    paths:
-#      - 'src'
-#      - 'scripts'
+    paths:
+      - 'src'
+      - 'scripts'
+      - 'services/airflow/dags'
+      - 'tests'
+      - 'configs'
 
 permissions:
   contents: read
@@ -35,22 +38,23 @@ jobs:
             python3.11 -m pip install --upgrade pip 
             pip3.11 install -r mlflow.requirements.txt 
 
-#      - name: Run your app
-#        run: python3.11 src/app.py &
-#
-#      - name: Export variables
-#        run: |
-#          echo $PWD
-#          export ZENML_CONFIG_PATH=$PWD/services/zenml
-#          export PROJECTPATH=$PWD
-#          export AIRFLOW_HOME=$PWD/services/airflow
-#          export PYTHONPATH=$PWD/src
-#
-#      - name: Run ZenML server
-#        run: zenml down && zenml up
-#
-#      - name: Test with pytest
-#        run: pytest tests
+      - name: Run your app
+        run: python3.11 src/app.py &
+
+      - name: Export variables
+        run: |
+          echo $PWD
+          export ZENML_CONFIG_PATH=$PWD/services/zenml
+          export PROJECTPATH=$PWD
+          export AIRFLOW_HOME=$PWD/services/airflow
+          export PYTHONPATH=$PWD/src
+
+      - name: Run ZenML server
+        run: zenml down && zenml up
+
+      - name: Test with pytest
+        run: pytest tests
+
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
