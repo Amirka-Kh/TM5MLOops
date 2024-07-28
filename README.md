@@ -57,6 +57,11 @@ and monitoring. The phases of the process are as follows:
     - Create a REST endpoint for your model prediction using Flask or FastAPI
     - Create a UI for your model using streamlit or pure HTML and JS.
     - Create a CI/CD pipeline for your model using Github Actions and Docker
+  
+### Models
+
+[random forest champion](https://drive.google.com/file/d/1-sM-t5uTrx7r9FUEV6yUE7-dge6o-kEn/view?usp=sharing)
+[random forest challenger](https://drive.google.com/file/d/142BOvFj5CHGX7DTnnyObVnnNyjN1npEH/view?usp=sharing)
 
 ## Data Overview
 
