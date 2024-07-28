@@ -89,23 +89,16 @@ def predict(property_type=None, room_type=None, accommodates=None, bathrooms=Non
 
     # Send POST request with the payload to the deployed Model API
     response = requests.post(
-        url=f"http://localhost:5151/invocations",
+        url=f"http://localhost:5001/predict",
         data=example,
         headers={"Content-Type": "application/json"},
     )
 
-    try:
-        my_response = requests.post(
-            url=f"http://localhost:5001/predict",
-            data=example,
-            headers={"Content-Type": "application/json"},
-        )
-        print(my_response.json())
-    except Exception as err:
-        print(err)
+    result = response.json()
+    text_result = str(result['prediction'][0])
+    text_result = text_result[:text_result.index('.') + 3] + ' $'
 
-    # Return the model's prediction
-    return response.json()
+    return text_result
 
 
 # Create the Gradio interface
@@ -169,7 +162,7 @@ demo = gr.Interface(
         gr.Number(label="city_NYC"),
         gr.Number(label="city_SF")
     ],
-    outputs=gr.Text(label="prediction result"),
+    outputs=gr.Textbox(lines=3, label="Log price:"),
     examples="data/examples"
 )
 
